@@ -88,7 +88,32 @@ $ ./minishell
 
 ### Definition
 
-The shell is a command language interpreter. - _Source: [The Open Group Base Specifications](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)_
+**TLDR:** The shell is a command language interpreter.
+\- _Source: [The Open Group Base Specifications](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)_
+
+> The shell is a program that interacts with the user through a terminal or takes the input from a file and executes a sequence of commands that are passed to the Operating System.
+> \- _Source: [Introduction to Systems Programming: a Hands-on Approach](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)_
+
+### Parts of a Shell Program
+
+The shell implementation is divided into three parts: **The Parser**, **The Executor**, and **Shell Subsystems**.
+
+* **The Parser:** reads the command line and puts it into a data structure called _Command Table_ that will store the commands that will be executed.
+* **The Executor:** takes the Command Table and for every _SimpleCommand_ in the array it  creates a new process; also, if necessary, it creates pipes to communicate the output of one process to the input of the next one; additionally, it redirects the standard input, standard output, and standard error if there are any redirections.
+* **Shell Subsystems:** such as _Environment Variables_ expansions, _Wildcards_ expansions, _Subshells_ executions.
+
+**The Parser**
+
+A parser is divided into two parts: a _Lexical Analyzer_ or _Lexer_ takes the input characters and puts the characters together into words called _tokens_, and a _Parser_ that processes the tokens according to a grammar and build the Command Table.
+
+**The Command Table**
+
+The _Command Table_ is an array of  _SimpleCommand_ structs. A SimpleCommand struct
+contains members for the command and arguments of a single entry in the pipeline. The
+parser will look also at the command line and determine if there is any input or output
+redirection based on symbols present in the command (i.e. < infile, or > outfile).
+
+_Source: [Introduction to Systems Programming: a Hands-on Approach](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)_
 
 ### Allowed functions
 
