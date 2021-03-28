@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 21:24:14 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:06:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:27:17 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	j;
 
-	if (!s || !(new_str = (char *)malloc(len + 1)))
+	new_str = (char *)malloc(len + 1);
+	if (!s || !new_str)
 		return (0);
 	i = start;
 	j = 0;

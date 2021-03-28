@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:01:11 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:57:49 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:42:21 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while ((src[i] != '\0') && (i < len))

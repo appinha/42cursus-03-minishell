@@ -6,13 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 18:56:49 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/31 12:38:46 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/01 21:55:16 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char		*ver_precision(char *dec_str, short int dec_len)
+static char	*ver_precision(char *dec_str, short int dec_len)
 {
 	size_t	strlen;
 	int		diff;
@@ -38,12 +38,15 @@ static t_ftoa	ver_rounding(t_ftoa var)
 	if ((var.dec_int % 10) >= (unsigned)var.rnd)
 		var.dec_int += 10;
 	aux = var.dec_int;
-	size = 1;
-	while (aux /= 10)
+	size = 0;
+	while (aux)
+	{
+		aux /= 10;
 		size++;
+	}
 	aux = var.dec_part * 10;
-	if ((var.dec_len == 0 && aux >= (unsigned)var.rnd) ||
-		(size > var.dec_int_size + 1 && aux + 1 >= (unsigned)var.rnd))
+	if ((var.dec_len == 0 && aux >= (unsigned)var.rnd)
+		|| (size > var.dec_int_size + 1 && aux + 1 >= (unsigned)var.rnd))
 	{
 		var.dec_int = 0;
 		var.int_part++;
@@ -75,9 +78,12 @@ static t_ftoa	dectoulli(t_ftoa var)
 	var.int_part = var.n;
 	var.dec_part = var.n - var.int_part;
 	var.dec_int = var.dec_part * ft_pow(10, var.dec_len);
-	var.dec_int_size = 1;
-	while ((var.dec_int) /= 10)
+	var.dec_int_size = 0;
+	while (var.dec_int)
+	{
+		(var.dec_int) /= 10;
 		(var.dec_int_size)++;
+	}
 	var.dec_int = var.dec_part * ft_pow(10, var.dec_len + 1);
 	var = ver_rounding(var);
 	var.dec_int /= 10;
@@ -86,11 +92,13 @@ static t_ftoa	dectoulli(t_ftoa var)
 	return (var);
 }
 
-char			*ft_ftoa_rnd(long double n, short int dec_len, short int rnd)
+char	*ft_ftoa_rnd(long double n, short int dec_len, short int rnd)
 {
 	t_ftoa	var;
 
-	var.n = (n >= 0) ? n : -n;
+	var.n = n;
+	if (n < 0)
+		var.n = -n;
 	var.dec_len = dec_len;
 	var.rnd = rnd;
 	var = dectoulli(var);

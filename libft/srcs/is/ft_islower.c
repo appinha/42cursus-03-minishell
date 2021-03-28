@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:42:00 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:54:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:14:32 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** 		 The islower() function tests for any lower-case letters.
 */
 
-int		ft_islower(int c)
+int	ft_islower(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (1);

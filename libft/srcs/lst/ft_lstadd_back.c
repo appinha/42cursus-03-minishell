@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 15:54:09 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:03:55 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:13:12 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *aux;
+	t_list	*aux;
 
 	if (!new)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:41 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:04:27 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:11:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 #include "libft.h"
 
-int				ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (lst)

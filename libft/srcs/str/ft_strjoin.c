@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 14:43:26 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/28 19:42:12 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:44:35 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
-	if (!s1 || !s2 ||
-		!(new_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	if (!s1 || !s2
+		|| !(new_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
 		return (0);
 	i = 0;
 	while (s1[i] != '\0')

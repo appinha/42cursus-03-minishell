@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 15:27:59 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:07:13 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:02:36 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	upper-case letter.
 */
 
-int		ft_toupper(int c)
+int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (c - ('a' - 'A'));

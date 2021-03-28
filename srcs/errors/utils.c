@@ -6,14 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:58:06 by apuchill          #+#    #+#             */
-/*   Updated: 2021/03/25 22:58:08 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:00:38 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "errors.h"
 
-void		*malloc_ver(size_t size)
+void	*malloc_ver(size_t size)
 {
 	void	*ptr;
 
@@ -23,7 +22,7 @@ void		*malloc_ver(size_t size)
 	return (ptr);
 }
 
-int			open_ver(char *file)
+int	open_ver(char *file)
 {
 	int		fd;
 
@@ -33,7 +32,7 @@ int			open_ver(char *file)
 	return (fd);
 }
 
-void		close_ver(int fd)
+void	close_ver(int fd)
 {
 	if (close(fd) < 0)
 		error_msg_and_exit(SYSERR);

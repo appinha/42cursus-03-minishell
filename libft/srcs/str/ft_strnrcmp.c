@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 18:40:38 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 09:27:13 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:40:54 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #include "libft.h"
 
-int		ft_strnrcmp(const char *s1, const char *s2, size_t n)
+int	ft_strnrcmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 	size_t	j;

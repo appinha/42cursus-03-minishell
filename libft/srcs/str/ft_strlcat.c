@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 21:44:39 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 15:12:28 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:44:15 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t c;
-	size_t d;
+	size_t	c;
+	size_t	d;
 
 	if (dstsize <= ft_strlen(dst))
 		return (dstsize + ft_strlen(src));

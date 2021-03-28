@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:38:08 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:05:29 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:03:20 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int i;
+	int	i;
 
 	if (s != NULL)
 	{

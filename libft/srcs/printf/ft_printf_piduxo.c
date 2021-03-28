@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 13:25:14 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/31 12:37:48 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/02 15:58:54 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ void	print_spec_p(int *len, t_flags fl, unsigned long int p)
 	free(fl.a);
 }
 
+static t_flags	print_spec_i_d_aux(t_flags fl)
+{
+	if (fl.lli >= 0)
+	{
+		fl.sign = '+';
+		fl.ulli = fl.lli;
+	}
+	else
+	{
+		fl.sign = '-';
+		fl.ulli = -fl.lli;
+	}
+	return (fl);
+}
+
 void	print_spec_i_d_u(int *len, t_flags fl, va_list args)
 {
 	if (fl.spe_c == 'i' || fl.spe_c == 'd')
@@ -31,8 +46,7 @@ void	print_spec_i_d_u(int *len, t_flags fl, va_list args)
 			fl.lli = va_arg(args, long int);
 		if (fl.length >= 2)
 			fl.lli = va_arg(args, long long int);
-		fl.sign = (fl.lli >= 0) ? '+' : '-';
-		fl.ulli = (fl.lli >= 0) ? fl.lli : -fl.lli;
+		fl = print_spec_i_d_aux(fl);
 	}
 	if (fl.spe_c == 'u')
 	{

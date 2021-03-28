@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:10:27 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:04:03 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:12:56 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list *aux;
+	t_list	*aux;
 
 	if (!*lst)
 		return ;

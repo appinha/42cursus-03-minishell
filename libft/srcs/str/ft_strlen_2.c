@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 16:11:53 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/04 16:14:01 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:43:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 size_t	ft_strlen_2(char **s)
 {
-	size_t l;
+	size_t	l;
 
 	l = 0;
 	while (s[l] != 0)

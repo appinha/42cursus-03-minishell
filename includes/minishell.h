@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/03/25 23:16:36 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/01 21:28:23 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 */
 # include <stdbool.h>
 # include <limits.h>
+# include <unistd.h>
 # include "libft.h"
 # include "errors.h"
 
@@ -26,6 +27,8 @@
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              MACROS
 */
+# define BUFF_SIZE	1024
+
 # define C_END		"\033[0m"
 # define C_BOLD		"\033[1m"
 # define C_PINK		"\033[38;5;13m"
@@ -47,6 +50,5 @@
 /*
 ** FILE: main.c
 */
-
 
 #endif

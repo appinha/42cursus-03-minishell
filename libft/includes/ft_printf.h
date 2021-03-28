@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 15:12:29 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/05 16:18:14 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/02 15:56:16 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 */
 # define FLAGS		"-+#0 "
 # define ALL_FL		"-+#0 *.0123456789lh"
-# define FSPECS		"cspdiuxX%onfge"
+# define FSPECS		"cspdiuxX%onf"
 
 # define DIGITS		"0123456789"
 # define HEXALOW	"0123456789abcdef"
@@ -70,7 +70,7 @@
 **			'hh	| signed char	| unsigned char				| signed char*	|
 ** Reference: http://www.cplusplus.com/reference/cstdio/printf/
 */
-typedef struct	s_flags
+typedef struct s_flags
 {
 	char					set[20];
 	char					spe_c;
@@ -88,19 +88,15 @@ typedef struct	s_flags
 	unsigned long long int	ulli;
 	long long int			lli;
 	long double				f;
-	int						e_nbr;
 	char					*a;
-	char					*d;
-	char					e[5];
 	char					*tmp;
-	int						size;
 	size_t					strlen;
 }				t_flags;
 
 /*
 ** ft_ftoa_rnd STRUCT & UNION
 */
-typedef struct	s_ftoa
+typedef struct s_ftoa
 {
 	long double				n;
 	short int				dec_len;
@@ -115,11 +111,11 @@ typedef struct	s_ftoa
 	char					z0[20];
 }				t_ftoa;
 
-typedef struct	s_dbl
+typedef struct s_dbl
 {
-	uint64_t	mantisa		:52;
-	uint64_t	exponent	:11;
-	uint64_t	sign		:1;
+	uint64_t	mantisa : 52;
+	uint64_t	exponent : 11;
+	uint64_t	sign : 1;
 
 }				t_dbl;
 
@@ -159,19 +155,11 @@ void			print_spec_x(int *len, t_flags fl, va_list args);
 void			print_spec_o(int *len, t_flags fl, va_list args);
 void			print_spec_p(int *len, t_flags fl, unsigned long int p);
 /*
-** FILE: ft_printf_f_g.c
+** FILE: ft_printf_f.c
 ** Outputs the input variable (collected by 'va_arg' function) as a pointer to a
 ** string to be printed by the 'print_flags' function.
 */
-void			print_spec_f_e_g(int *len, t_flags fl, double n);
-t_flags			print_spec_f(t_flags fl, double n);
-t_flags			print_spec_g(t_flags fl, double n, int p);
-/*
-** FILE: ft_printf_e.c
-** Outputs the input variable (collected by 'va_arg' function) as a pointer to a
-** string to be printed by the 'print_flags' function.
-*/
-t_flags			print_spec_e(t_flags fl, double n);
+void			print_spec_f(int *len, t_flags fl, double n);
 /*
 ** FILE: ft_printf_flags.c
 ** Prints each format specifier function's outputted string with formatting in
@@ -187,7 +175,6 @@ int				ft_strchr_01(char *s, char c);
 void			ft_putchar_len(char c, int *len);
 void			ft_putcstr_len(char *s, int *len, int size);
 char			*ft_ullitoa_base(unsigned long long int n, char *base);
-long double		ft_fmod(long double n, long double mod);
 /*
 ** FILE: ft_ftoa_rnd.c
 */

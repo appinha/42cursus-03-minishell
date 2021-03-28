@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 22:56:10 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:58:18 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:03:42 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void	ft_swap(int *a, int *b)
 {
-	int aux;
+	int	aux;
 
 	aux = *a;
 	*a = *b;

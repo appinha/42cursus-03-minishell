@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 16:57:53 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:57:57 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:42:01 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@
 
 char	*ft_strndup(const char *s1, size_t n)
 {
-	char *s2;
+	char	*s2;
 
-	if (!(s2 = (char *)malloc(n + 1)))
+	s2 = (char *)malloc(n + 1);
+	if (!s2)
 		return (0);
 	ft_memcpy(s2, s1, n);
 	s2[n + 1] = 0;

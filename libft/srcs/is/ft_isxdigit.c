@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 15:20:55 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:56:10 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:13:36 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 ** 		The isxdigit() function tests for any hexadecimal-digit character.
 */
 
-int		ft_isxdigit(int c)
+int	ft_isxdigit(int c)
 {
-	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') ||
-	(c >= 'a' && c <= 'f'))
+	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F')
+		|| (c >= 'a' && c <= 'f'))
 		return (1);
 	return (0);
 }

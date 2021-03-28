@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:42:00 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:55:09 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:14:15 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 **	space (` ') or a character for which isalnum(3) is true.
 */
 
-int		ft_ispunct(int c)
+int	ft_ispunct(int c)
 {
-	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 96) ||
-		(c >= 123 && c <= 126))
+	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 96)
+		|| (c >= 123 && c <= 126))
 		return (1);
 	return (0);
 }

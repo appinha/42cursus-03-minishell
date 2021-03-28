@@ -6,10 +6,9 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:56:35 by apuchill          #+#    #+#             */
-/*   Updated: 2021/03/25 22:57:19 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:00:03 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef ERRORS_H
 # define ERRORS_H
@@ -39,7 +38,7 @@
 */
 void			error_msg_and_exit(char *code);
 char			*get_error_code(short int categ, short int elem_id,
-						short int err_id);
+					short int err_id);
 /*
 ** FILE: utils.c
 */

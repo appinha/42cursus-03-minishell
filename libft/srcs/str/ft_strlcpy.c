@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 21:33:05 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 15:12:34 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:44:03 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t srcsize;
-	size_t i;
+	size_t	srcsize;
+	size_t	i;
 
 	if (!dst || !src)
 		return (0);

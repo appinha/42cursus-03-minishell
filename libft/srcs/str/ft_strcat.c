@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 10:21:00 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:57:09 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:45:48 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 char	*ft_strcat(char *s1, const char *s2)
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(s1);
 	while (*s2 != '\0')

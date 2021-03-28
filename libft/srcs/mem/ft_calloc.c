@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 18:07:59 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:02:46 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:06:36 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*dst;
 
 	tot_size = size * count;
-	if (!(dst = malloc(tot_size)))
+	dst = malloc(tot_size);
+	if (!dst)
 		return (0);
 	ft_memset(dst, 0, tot_size);
 	return (dst);

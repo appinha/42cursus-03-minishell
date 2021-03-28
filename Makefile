@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/21 10:49:38 by apuchill          #+#    #+#              #
-#    Updated: 2021/03/21 15:40:16 by apuchill         ###   ########.fr        #
+#    Updated: 2021/03/28 13:21:09 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC			= clang
 # CFLAGS		= -Wall -Wextra -Werror
 CFLAGS		= -g3 -fsanitize=address
 RM			= /bin/rm -f
-NORM		= ~/.norminette/norminette.rb
+NORM		= norminette
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
@@ -69,4 +69,4 @@ sh:			reset all
 
 .PHONY:		norm
 norm:
-			@$(NORM) */*.h */*/*.h */*/*.c */*/*/*.c
+			@$(NORM) */*.h */*/*.c

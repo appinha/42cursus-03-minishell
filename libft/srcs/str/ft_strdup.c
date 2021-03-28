@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 16:57:53 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:06:00 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:45:03 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char *s2;
+	char	*s2;
 
-	if (!(s2 = (char *)malloc(ft_strlen(s1) + 1)))
+	s2 = (char *)malloc(ft_strlen(s1) + 1);
+	if (!s2)
 		return (0);
 	ft_memcpy(s2, s1, ft_strlen(s1) + 1);
 	return (s2);

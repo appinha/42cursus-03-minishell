@@ -6,13 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 20:01:42 by apuchill          #+#    #+#             */
-/*   Updated: 2020/06/11 00:00:02 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/02 14:42:57 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void		ft_free_null(char **ptr)
+static void	ft_free_null(char **ptr)
 {
 	if (!ptr || !*ptr)
 		return ;
@@ -20,7 +20,7 @@ static void		ft_free_null(char **ptr)
 	*ptr = NULL;
 }
 
-static void		ft_cpy_exc_buff(char **buff, long long j)
+static void	ft_cpy_exc_buff(char **buff, long long j)
 {
 	long long	i;
 	char		tmp[ARG_MAX];
@@ -38,7 +38,7 @@ static void		ft_cpy_exc_buff(char **buff, long long j)
 	}
 }
 
-static int		ft_buff2line(char **line, char **buff)
+static int	ft_buff2line(char **line, char **buff)
 {
 	long long	i;
 	long long	j;
@@ -65,29 +65,42 @@ static int		ft_buff2line(char **line, char **buff)
 	return (NO_ENDLINE);
 }
 
-int				get_next_line(int fd, char **line)
+static char	*read_line(int fd, int *qty)
+{
+	char	*buff;
+	char	tmp[ARG_MAX];
+
+	*qty = read(fd, tmp, BUFFER_SIZE);
+	if (*qty < 0)
+		return (NULL);
+	tmp[*qty] = '\0';
+	buff = ft_strdup(tmp);
+	return (buff);
+}
+
+int	get_next_line(int fd, char **line)
 {
 	static char	*buff[OPEN_MAX];
-	char		tmp[ARG_MAX];
-	int			ret[2];
+	int			endline;
+	int			qty;
 
-	if (fd >= 0 && line && BUFFER_SIZE > 0 && (*line = ft_strdup("")))
+	if (fd >= 0 && line && BUFFER_SIZE > 0)
 	{
-		ret[0] = NO_ENDLINE;
-		while (ret[0] == NO_ENDLINE)
+		*line = ft_strdup("");
+		endline = NO_ENDLINE;
+		while (endline == NO_ENDLINE)
 		{
-			if (buff[fd] == NULL && (ret[1] = read(fd, tmp, BUFFER_SIZE)) >= 0
-				&& (tmp[ret[1]] = '\0') == 0)
-				buff[fd] = ft_strdup(tmp);
+			if (buff[fd] == NULL)
+				buff[fd] = read_line(fd, &qty);
 			if (buff[fd] != NULL)
-				ret[1] = ft_strlen(buff[fd]);
-			if (ret[1] < 0)
+				qty = ft_strlen(buff[fd]);
+			if (qty < 0)
 				break ;
-			ret[0] = ft_buff2line(&*line, &buff[fd]);
-			if (ret[1] == 0)
+			endline = ft_buff2line(&*line, &buff[fd]);
+			if (qty == 0)
 				return (EOF_RCHD);
 		}
-		if (ret[0] == FOUND_ENDLINE)
+		if (endline == FOUND_ENDLINE)
 			return (READL_OK);
 	}
 	ft_free_null(&*line);

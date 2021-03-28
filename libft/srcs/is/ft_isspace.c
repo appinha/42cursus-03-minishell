@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:42:00 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:55:46 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:14:00 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 ** 		The isspace() function tests for the white-space characters.
 */
 
-int		ft_isspace(int c)
+int	ft_isspace(int c)
 {
-	if (c == ' ' || c == '\n' || c == '\t' || c == '\v' || c == '\f' ||
-		c == '\r')
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\v' || c == '\f'
+		|| c == '\r')
 		return (1);
 	return (0);
 }

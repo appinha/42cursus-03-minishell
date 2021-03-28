@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:37:39 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:04:19 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:12:40 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *new_lst;
-	t_list *elem;
+	t_list	*new_lst;
+	t_list	*elem;
 
 	if (!lst)
 		return (0);
 	new_lst = 0;
 	while (lst)
 	{
-		if (!(elem = ft_lstnew(f(lst->content))))
+		elem = ft_lstnew(f(lst->content));
+		if (!elem)
 		{
 			ft_lstclear(&new_lst, del);
 			return (0);

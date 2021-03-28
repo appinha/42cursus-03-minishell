@@ -6,15 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:58:19 by apuchill          #+#    #+#             */
-/*   Updated: 2021/03/25 23:06:57 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:01:25 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "errors.h"
 
-char		*get_error_code(short int category, short int elem_id,
-							short int err_id)
+char	*get_error_code(short int category, short int elem_id, short int err_id)
 {
 	char	*code;
 
@@ -47,7 +45,7 @@ static void	print_error_msg(char *code)
 	close_ver(fd);
 }
 
-void		error_msg_and_exit(char *code)
+void	error_msg_and_exit(char *code)
 {
 	if (errno && ft_strcmp(code, SYSERR) == 0)
 		perror("\033[1m\033[1;31mSystem error\033[0m");

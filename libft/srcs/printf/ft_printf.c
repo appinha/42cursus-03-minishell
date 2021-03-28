@@ -6,13 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 15:10:37 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/31 12:37:18 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/02 15:41:14 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		triage_specs(va_list args, int *len, t_flags fl)
+static void	triage_specs(va_list args, int *len, t_flags fl)
 {
 	int		*p;
 
@@ -30,10 +30,13 @@ static void		triage_specs(va_list args, int *len, t_flags fl)
 		print_spec_x(len, fl, args);
 	if (fl.spe_c == 'o')
 		print_spec_o(len, fl, args);
-	if (fl.spe_c == 'n' && (p = va_arg(args, int *)))
+	if (fl.spe_c == 'n')
+	{
+		p = va_arg(args, int *);
 		*p = *len;
-	if (fl.spe_c == 'f' || fl.spe_c == 'e' || fl.spe_c == 'g')
-		print_spec_f_e_g(len, fl, va_arg(args, double));
+	}
+	if (fl.spe_c == 'f')
+		print_spec_f(len, fl, va_arg(args, double));
 }
 
 static t_flags	treat_star(va_list args, t_flags fl, int *j)
@@ -44,9 +47,14 @@ static t_flags	treat_star(va_list args, t_flags fl, int *j)
 	value = va_arg(args, int);
 	if (fl.point == 0)
 	{
-		fl.width = (value >= 0) ? value : -value;
-		fl.pad_c = (value >= 0) ? fl.pad_c : ' ';
-		fl.minus = (value >= 0) ? fl.minus : 1;
+		if (value >= 0)
+			fl.width = value;
+		else
+		{
+			fl.width = -value;
+			fl.pad_c = ' ';
+			fl.minus = 1;
+		}
 	}
 	if (fl.point == 1)
 	{
@@ -87,7 +95,7 @@ static t_flags	treat_flags(va_list args, t_flags fl)
 	return (fl);
 }
 
-static void		get_fspecs(va_list args, const char *format, int *len, int *i)
+static void	get_fspecs(va_list args, const char *format, int *len, int *i)
 {
 	t_flags	fl;
 	int		j;
@@ -115,7 +123,7 @@ static void		get_fspecs(va_list args, const char *format, int *len, int *i)
 		(*len) = -1;
 }
 
-int				ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		len;

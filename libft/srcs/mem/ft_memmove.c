@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:05:26 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/30 19:52:35 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:04:02 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	if (!dst && !src)
 		return (0);

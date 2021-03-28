@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 15:27:59 by apuchill          #+#    #+#             */
-/*   Updated: 2020/02/19 14:07:07 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:02:48 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	corresponding lower-case letter.
 */
 
-int		ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + ('a' - 'A'));
