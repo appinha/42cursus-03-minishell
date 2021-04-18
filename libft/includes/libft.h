@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:29:28 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/03 11:45:55 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/04 11:17:48 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 */
 # include <unistd.h>
 # include <stdlib.h>
+# include <signal.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "dict.h"

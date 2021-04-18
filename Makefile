@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/21 10:49:38 by apuchill          #+#    #+#              #
-#    Updated: 2021/03/28 13:21:09 by apuchill         ###   ########.fr        #
+#    Updated: 2021/04/04 12:06:54 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NORM		= norminette
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
-SUBDIRS		= main errors
+SUBDIRS		= main errors builtins
 
 SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
