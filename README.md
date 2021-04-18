@@ -80,19 +80,24 @@ $ ./minishell
 
 ## 📌 Useful Links
 
-* [My notes on Shell & Shell Scripting](https://www.notion.so/Shell-Shell-Scripting-6e0f0290a0304dad93a1d25ba15d92fe)
-* [The Open Group Base Specifications - Shell Command Language](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
+* [My personal notes on Shell & Shell Scripting](https://www.notion.so/Shell-Shell-Scripting-6e0f0290a0304dad93a1d25ba15d92fe)
 * [harm-smits' 42 Docs - minishell](https://harm-smits.github.io/42docs/projects/minishell)
+* [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
+* [The Open Group Base Specifications - Shell Command Language](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
+* [Introduction to Systems Programming: a Hands-on Approach - Chapter 5. Writing Your Own Shell ](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)
+
 
 ## 🤓 Study Summary
 
 ### Definition
 
-**TLDR:** The shell is a command language interpreter.
-\- _Source: [The Open Group Base Specifications](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)_
+**TLDR:** The shell is a command language interpreter. - [_Source_](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
 
-> The shell is a program that interacts with the user through a terminal or takes the input from a file and executes a sequence of commands that are passed to the Operating System.
-> \- _Source: [Introduction to Systems Programming: a Hands-on Approach](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)_
+> The UNIX shell program interprets user commands, which are either directly entered by the user, or which can be read from a file called the shell script or shell program. Shell scripts are interpreted, not compiled. The shell reads commands from the script line per line and searches for those commands on the system, while a compiler converts a program into machine readable form, an executable file - which may then be used in a shell script.
+>
+> Apart from passing commands to the kernel, the main task of a shell is providing a user environment, which can be configured individually using shell resource configuration files. - [_Source_](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_01_01.html)
+
+* [**Shell types**](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_01_01.html) (sh, bash, etc)
 
 ### Parts of a Shell Program
 
@@ -113,9 +118,61 @@ contains members for the command and arguments of a single entry in the pipeline
 parser will look also at the command line and determine if there is any input or output
 redirection based on symbols present in the command (i.e. < infile, or > outfile).
 
-_Source: [Introduction to Systems Programming: a Hands-on Approach](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)_
+\- [_Source_](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)
 
-### Allowed functions
+### Shell Variables
+
+Shell variable names are in uppercase characters by convention. Bash keeps a list of two types of variables:
+
+* **Global / environment variables** - are available in all shells. The `env` or `printenv` commands can be used to display environment variables.
+* **Local variables** - are only available in the current shell. Using the `set` built-in command without any options will display a list of all variables (including environment variables) and functions. Child processes of the current shell will not be aware of local variables.
+
+Variables are case sensitive and capitalized by default. Giving local variables a lowercase name is a convention which is sometimes applied. However, you are free to use the names you want or to mix cases. Variables can also contain digits, but a name starting with a digit is not allowed.
+
+To set a local variable in the shell, use:
+
+```shell
+VARNAME="value"
+```
+
+**Exporting variables**
+
+In order to pass variables to a subshell, we need to export them using the `export` built-in command. Variables that are exported are referred to as **environment variables**. A subshell can change variables it inherited from the parent, but the changes made by the child don't affect the parent.
+
+Setting and exporting is usually done in one step:
+
+```shell
+export VARNAME="value"
+```
+
+\- [_Source_](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html)
+
+More information:
+
+* [refspecs.linuxbase.org - __environ](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/baselib---environ.html)
+* [environ(7) - Linux manual page](https://man7.org/linux/man-pages/man7/environ.7.html)
+
+### Termination Signals
+
+These signals are all used to tell a process to terminate, in one way or another. They have different names because they’re used for slightly different purposes, and programs might want to handle them differently.
+
+* **SIGINT** - program interrupt signal (**ctrl + C**).
+* **SIGQUIT** - program interrupt signal (**ctrl + \\**), produces a core dump when it terminates the process, just like a program error signal.
+
+\- [_Source_](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html)
+
+
+### Exit status
+
+Each command executed in a shell returns an **exit status** (sometimes referred to as a _return status_ or _exit code_). The exit status is often used in shell scripts to display an error message or take an action.
+
+Exit statuses fall between 0 and 255, though the shell may use values above 125 specially. For the shell's purposes, a command which exits with a **zero exit status** has succeeded. A **non-zero exit status** indicates failure. This seemingly counter-intuitive scheme is used so there is one well-defined way to indicate success and a variety of ways to indicate various failure modes.
+
+There is a special shell variable called **`$?`** that expands to the exit status of the most recently executed command.
+
+\- [_Source 1_](https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html), [_Source 2_](https://tldp.org/LDP/abs/html/exit-status.html)
+
+### Functions allowed in this project
 
 | Function		| Manual Page		| From lib			| Description
 | :--			| :--				| :--				| :--
