@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:56:35 by apuchill          #+#    #+#             */
-/*   Updated: 2021/03/28 12:00:03 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/24 17:16:58 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              MACROS
 */
-# define SYSERR		"000"
+# define SYSERR	"\033[1m\033[1;31mSystem error\033[0m\n"
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -36,14 +36,12 @@
 /*
 ** FILE: errors.c
 */
-void			error_msg_and_exit(char *code);
-char			*get_error_code(short int categ, short int elem_id,
-					short int err_id);
+void	error_msg_and_exit(char *function, char *msg);
 /*
 ** FILE: utils.c
 */
-void			*malloc_ver(size_t size);
-int				open_ver(char *file);
-void			close_ver(int fd);
+void	*malloc_ver(size_t size);
+int		open_ver(char *file);
+void	close_ver(int fd);
 
 #endif
