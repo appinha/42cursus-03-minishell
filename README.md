@@ -172,6 +172,35 @@ There is a special shell variable called **`$?`** that expands to the exit statu
 
 \- [_Source 1_](https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html), [_Source 2_](https://tldp.org/LDP/abs/html/exit-status.html)
 
+### Termcap
+
+Termcap is a **library and data base** that enables programs to use display terminals in a terminal-independent manner.
+
+The **termcap data base** describes the capabilities of hundreds of different display terminals in great detail. Some examples of the information recorded for a terminal could include how many columns wide it is, what string to send to move the cursor to an arbitrary position (including how to encode the row and column numbers), how to scroll the screen up one or several lines, and how much padding is needed for such a scrolling operation.
+
+The **termcap library** is provided for easy access this data base in programs that want to do terminal-independent character-based display output. It contains functions for the following purposes:
+
+* Finding the description of the user’s terminal type (`tgetent`).
+* Interrogating the description for information on various topics (`tgetnum`, `tgetflag`, `tgetstr`).
+* Computing and performing padding (`tputs`).
+* Encoding numeric parameters such as cursor positions into the terminal specific form required for display commands (`tparam`, `tgoto`).
+
+```shell
+int		tgetent (char *buffer, char *termtype);
+```
+
+This function finds the description and remembers it internally so that you can interrogate it about specific terminal capabilities.
+
+* **`@param termtype`** - a string which is the name for the type of terminal to look up. Usually you would obtain this from the environment variable `TERM` using `getenv ("TERM")`.
+* **`@param buffer`** - if you are using the GNU version of termcap, you can alternatively ask `tgetent` to allocate enough space. Pass a null pointer for `buffer`, and `tgetent` itself allocates the storage using malloc.
+* **`@returns int`** - `1` if there is some difficulty accessing the data base of terminal types, `0` if the data base is accessible but the specified type is not defined in it, and some other value otherwise.
+
+No matter how the space to store the description has been obtained, `termcap` records its address internally for use when you later interrogate the
+description with `tgetnum`, `tgetstr` or `tgetflag`. If the buffer was allocated
+by termcap, it will be freed by termcap too if you call tgetent again.
+
+\- [_Source_](https://www.gnu.org/software/termutils/manual/termcap-1.3/)
+
 ### Functions allowed in this project
 
 | Function		| Manual Page		| From lib			| Description
