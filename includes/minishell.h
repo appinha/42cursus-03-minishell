@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/18 18:31:06 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:31:53 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <unistd.h>
 # include <signal.h>
+# include <termcap.h>
 # include "libft.h"
 # include "errors.h"
 
@@ -45,7 +46,7 @@
 */
 typedef struct s_msh
 {
-	t_dict	*dc_environ;
+	t_dict	*dict_env;
 }	t_msh;
 
 /*
@@ -59,8 +60,9 @@ t_msh	g_msh;
 **                              FUNCTION PROTOTYPES
 */
 /*
-** FILE: main.c
+** FILE: utils.c
 */
+char	*ft_getenv(char *env);
 void	print_prompt(void);
 void	set_exit_status(int status);
 /*
@@ -68,6 +70,10 @@ void	set_exit_status(int status);
 */
 void	signal_handler(short int caller);
 void	sig_prompt(int signum);
+/*
+** FILE: termcap.c
+*/
+void	init_terminal_data(void);
 /*
 ** FOLDER: builtins.c
 */

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:22:40 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/18 19:46:15 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/24 17:04:39 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	signal_handler(short int caller)
 	if (caller == PROMPT)
 	{
 		if (signal(SIGINT, sig_prompt) == SIG_ERR)
-			error_msg_and_exit(SYSERR);
+			error_msg_and_exit("signal_handler", SYSERR);
 		if (signal(SIGQUIT, sig_prompt) == SIG_ERR)
-			error_msg_and_exit(SYSERR);
+			error_msg_and_exit("signal_handler", SYSERR);
 	}
 }

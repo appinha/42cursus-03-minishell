@@ -6,13 +6,13 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/21 10:49:38 by apuchill          #+#    #+#              #
-#    Updated: 2021/04/04 12:06:54 by apuchill         ###   ########.fr        #
+#    Updated: 2021/04/21 15:20:26 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-MSH_FLAGS	=
+MSH_FLAGS	= -ltermcap
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 LIBFT		= $(LIBFT_DIR)/libft.a
