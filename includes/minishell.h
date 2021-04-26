@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/24 16:31:53 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:12:03 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <limits.h>
 # include <unistd.h>
 # include <signal.h>
-# include <termcap.h>
+# include <term.h>
 # include "libft.h"
 # include "errors.h"
 
@@ -30,6 +30,10 @@
 **                              MACROS
 */
 # define PROMPT		0
+# define EOT		4
+
+# define DEL		127
+# define ESC		27
 
 # define C_END		"\033[0m"
 # define C_BOLD		"\033[1m"
@@ -46,7 +50,10 @@
 */
 typedef struct s_msh
 {
-	t_dict	*dict_env;
+	t_dict			*dict_env;
+	struct termios	orig_term;
+	int				len_prompt;
+	char			*line;
 }	t_msh;
 
 /*
@@ -64,6 +71,7 @@ t_msh	g_msh;
 */
 char	*ft_getenv(char *env);
 void	print_prompt(void);
+int		ft_putchar_int(int c);
 void	set_exit_status(int status);
 /*
 ** FILE: signal.c
@@ -73,7 +81,12 @@ void	sig_prompt(int signum);
 /*
 ** FILE: termcap.c
 */
-void	init_terminal_data(void);
+void	init_terminal_data(char *termtype);
+/*
+** FILE: term_handler.c
+*/
+int		terminal_handler(char *buf);
+void	restore_terminal_data(bool from_exit);
 /*
 ** FOLDER: builtins.c
 */

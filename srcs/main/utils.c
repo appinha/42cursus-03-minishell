@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 18:40:59 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/24 17:17:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:11:06 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,14 @@ void	print_prompt(void)
 	user = dict_get(g_msh.dict_env, "USER");
 	if (getcwd(cwd, PATH_MAX) == NULL)
 		error_msg_and_exit("getcwd", SYSERR);
-	ft_printf("%s%s➜  %s %s%s %s✗ %s ",
+	g_msh.len_prompt = ft_printf("%s%s➜  %s %s%s %s✗ %s ",
 		C_GREEN, C_BOLD, user, C_PINK, cwd, C_YELLOW, C_END);
+}
+
+int		ft_putchar_int(int c)
+{
+	write(1, &c, 1);
+	return (1);
 }
 
 void	set_exit_status(int status)

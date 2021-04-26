@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:22:40 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/24 17:04:39 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/25 20:50:54 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 /*
 ** Signal handler functions. More info: man signal.
 **
-** SIGINT: program interrupt signal (ctrl+C).
-** SIGQUIT: (ctrl+\).
+** SIGINT: program interrupt signal (ctrl + C).
+** SIGQUIT: (ctrl + \).
+** EOT: end of transmission (ctrl + D).
 */
 
 void	sig_prompt(int signum)
@@ -26,6 +27,11 @@ void	sig_prompt(int signum)
 		ft_printf("\n");
 		set_exit_status(130);
 		print_prompt();
+	}
+	if (signum == EOT)
+	{
+		ft_printf("exit\n");
+		msh_exit();
 	}
 }
 

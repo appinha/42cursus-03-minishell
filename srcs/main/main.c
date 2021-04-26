@@ -6,29 +6,36 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/24 17:16:03 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:19:00 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	msh_loop(void)
+static void	parser(char *line)
 {
-	char	*line;
-	int		status;
+	if (ft_strcmp(line, "exit") == 0)
+		msh_exit();
+	if (ft_strcmp(line, "") == 0)
+		return ;
+	else
+		ft_printf("minishell: command not found: %s\n", line);
+}
 
-	while (true)
+static void	get_input(void)
+{
+	int		listen;
+	char	buf[3];
+
+	g_msh.line = calloc_ver(2, sizeof(char));
+	listen = 0;
+	while (listen == 0)
 	{
-		signal_handler(PROMPT);
-		print_prompt();
-		status = get_next_line(STDIN_FILENO, &line);
-		if (status < 0)
-			error_msg_and_exit("get_next_line", SYSERR);
-		if (ft_strcmp(line, "exit") == 0)
-			msh_exit();
-		else
-			ft_printf("minishell: command not found...\n");
-		free(line);
+		ft_bzero(buf, 3);
+		read_ver(STDIN_FILENO, &buf, 3);
+		if (buf[0] == EOT && g_msh.line[0] == '\0')
+			sig_prompt(EOT);
+		listen = terminal_handler(buf);
 	}
 }
 
@@ -37,25 +44,35 @@ static void	get_environ(char **__environ)
 	char	**split;
 	int		i;
 
-	g_msh.dict_env = dict_create(1024);
+	g_msh.dict_env = dict_create_ver(1024);
 	i = 0;
 	while (__environ[i])
 	{
 		split = ft_split(__environ[i], '=');
+		if (!split)
+			break ;
 		if (split[0] && split[1])
-			dict_insert(g_msh.dict_env, split[0], ft_strdup(split[1]));
+			dict_insert_ver(g_msh.dict_env, split[0], ft_strdup(split[1]));
 		else if (split[0])
-			dict_insert(g_msh.dict_env, split[0], ft_strdup(""));
+			dict_insert_ver(g_msh.dict_env, split[0], ft_strdup(""));
 		ft_split_free(split);
 		i++;
 	}
-	dict_insert(g_msh.dict_env, "?", ft_strdup("0"));
+	dict_insert_ver(g_msh.dict_env, "?", ft_strdup("0"));
 }
 
 int	main(void)
 {
 	get_environ(__environ);
-	init_terminal_data();
-	msh_loop();
+	while (true)
+	{
+		print_prompt();
+		init_terminal_data(ft_getenv("TERM"));
+		signal_handler(PROMPT);
+		get_input();
+		restore_terminal_data(false);
+		parser(g_msh.line);
+		free(g_msh.line);
+	}
 	return (EXIT_SUCCESS);
 }
