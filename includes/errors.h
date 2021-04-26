@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:56:35 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/24 17:16:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/25 21:37:40 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft.h"
+# include "dict.h"
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -38,10 +39,17 @@
 */
 void	error_msg_and_exit(char *function, char *msg);
 /*
-** FILE: utils.c
+** FILE: ft_ver_1.c
 */
 void	*malloc_ver(size_t size);
+void	*calloc_ver(size_t count, size_t size);
 int		open_ver(char *file);
+ssize_t	read_ver(int fd, void *buf, size_t nbytes);
 void	close_ver(int fd);
+/*
+** FILE: ft_ver_2.c
+*/
+t_dict	*dict_create_ver(unsigned int len);
+void	dict_insert_ver(t_dict *dict, const char *key, void *value);
 
 #endif
