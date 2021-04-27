@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 18:40:59 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/26 21:10:37 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:32:40 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ char	*ft_getenv(char *env)
 	return (value);
 }
 
-void	print_prompt(void)
+void	print_prompt(char *user)
 {
-	char	*user;
 	char	cwd[PATH_MAX];
 
-	user = ft_getenv("USER");
 	if (getcwd(cwd, PATH_MAX) == NULL)
 		error_msg_and_exit("getcwd", SYSERR);
 	ft_printf("%s%s➜  %s %s%s %s✗ %s ",

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:24:52 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:31:56 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_msh	g_msh;
 ** FILE: utils.c
 */
 char	*ft_getenv(char *env);
-void	print_prompt(void);
+void	print_prompt(char *user);
 int		ft_putchar_int(int c);
 void	set_exit_status(int status);
 /*

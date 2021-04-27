@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:28:32 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:32:09 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(void)
 	get_environ(__environ);
 	while (true)
 	{
-		print_prompt();
+		print_prompt(ft_getenv("USER"));
 		init_terminal_data(ft_getenv("TERM"));
 		signal_handler(PROMPT);
 		get_input(ft_getenv("TERM"));

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:22:40 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/25 20:50:54 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:33:26 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sig_prompt(int signum)
 	{
 		ft_printf("\n");
 		set_exit_status(130);
-		print_prompt();
+		print_prompt(ft_getenv("USER"));
 	}
 	if (signum == EOT)
 	{
