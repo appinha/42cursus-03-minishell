@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:59:31 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/25 21:21:52 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:39:53 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	msh_destroy(void)
 {
 	dict_destroy(g_msh.dict_env);
-	if (g_msh.line)
-		free(g_msh.line);
+	if (g_msh.cmd_line)
+		free(g_msh.cmd_line);
 }
 
 void	msh_exit(void)

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:31:56 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:40:00 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_msh
 	t_dict			*dict_env;
 	struct termios	orig_term;
 	int				len_prompt;
-	char			*line;
+	char			*cmd_line;
 }	t_msh;
 
 /*

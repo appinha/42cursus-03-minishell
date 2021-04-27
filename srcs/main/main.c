@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:32:09 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:39:53 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void	get_input(char *termtype)
 	int		listen;
 	char	buf[3];
 
-	g_msh.line = calloc_ver(2, sizeof(char));
+	g_msh.cmd_line = calloc_ver(2, sizeof(char));
 	listen = 0;
 	while (listen == 0)
 	{
 		ft_bzero(buf, 3);
 		read_ver(STDIN_FILENO, &buf, 3);
-		if (buf[0] == EOT && g_msh.line[0] == '\0')
+		if (buf[0] == EOT && g_msh.cmd_line[0] == '\0')
 			sig_prompt(EOT);
 		listen = terminal_handler(termtype, buf);
 	}
@@ -71,8 +71,8 @@ int	main(void)
 		signal_handler(PROMPT);
 		get_input(ft_getenv("TERM"));
 		restore_terminal_data(false);
-		parser(g_msh.line);
-		free(g_msh.line);
+		parser(g_msh.cmd_line);
+		free(g_msh.cmd_line);
 	}
 	return (EXIT_SUCCESS);
 }

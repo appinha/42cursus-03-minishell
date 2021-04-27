@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:24:25 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:39:53 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	term_backspace(int len, int col)
 {
 	if (len > 0)
 	{
-		g_msh.line[len - 1] = '\0';
+		g_msh.cmd_line[len - 1] = '\0';
 		tputs(tgetstr("le", NULL), 1, &ft_putchar_int);
 		tputs(tgetstr("dc", NULL), 1, &ft_putchar_int);
 		if ((g_msh.len_prompt + len) % (col) == 0)
@@ -60,11 +60,11 @@ static void	term_get_char(int len, int col, char c)
 	if (!ft_isprint(c))
 		return ;
 	tmp = calloc_ver(1, len + 2);
-	ft_memcpy(tmp, g_msh.line, len);
+	ft_memcpy(tmp, g_msh.cmd_line, len);
 	tmp[len] = c;
 	tmp[len + 1] = '\0';
-	free(g_msh.line);
-	g_msh.line = tmp;
+	free(g_msh.cmd_line);
+	g_msh.cmd_line = tmp;
 	ft_printf("%c", c);
 	if ((len + g_msh.len_prompt) % (col - 1) == 0)
 		tputs(tgetstr("do", NULL), 1, &ft_putchar_int);
@@ -76,7 +76,7 @@ int	terminal_handler(char *termtype, char *buf)
 	int	len;
 	int	col;
 
-	len = ft_strlen(g_msh.line);
+	len = ft_strlen(g_msh.cmd_line);
 	get_terminal_data(termtype);
 	col = tgetnum("col");
 	if (buf[0] == '\n')
