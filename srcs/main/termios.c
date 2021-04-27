@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/26 22:10:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:24:25 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,13 @@ static void	term_get_char(int len, int col, char c)
 
 }
 
-int	terminal_handler(char *buf)
+int	terminal_handler(char *termtype, char *buf)
 {
 	int	len;
 	int	col;
 
 	len = ft_strlen(g_msh.line);
+	get_terminal_data(termtype);
 	col = tgetnum("col");
 	if (buf[0] == '\n')
 		return (term_newline());

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/25 22:19:00 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:28:32 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	parser(char *line)
 		ft_printf("minishell: command not found: %s\n", line);
 }
 
-static void	get_input(void)
+static void	get_input(char *termtype)
 {
 	int		listen;
 	char	buf[3];
@@ -35,7 +35,7 @@ static void	get_input(void)
 		read_ver(STDIN_FILENO, &buf, 3);
 		if (buf[0] == EOT && g_msh.line[0] == '\0')
 			sig_prompt(EOT);
-		listen = terminal_handler(buf);
+		listen = terminal_handler(termtype, buf);
 	}
 }
 
@@ -69,7 +69,7 @@ int	main(void)
 		print_prompt();
 		init_terminal_data(ft_getenv("TERM"));
 		signal_handler(PROMPT);
-		get_input();
+		get_input(ft_getenv("TERM"));
 		restore_terminal_data(false);
 		parser(g_msh.line);
 		free(g_msh.line);

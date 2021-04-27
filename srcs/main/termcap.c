@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:29:01 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/25 21:19:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:22:58 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 
 #include "minishell.h"
 
-void	init_terminal_data(char *termtype)
+void	get_terminal_data(char *termtype)
 {
 	int				ret;
-	struct termios	new_term;
 
 	ret = tgetent(NULL, termtype);
 	if (ret < 0)
@@ -29,6 +28,14 @@ void	init_terminal_data(char *termtype)
 	if (ret == 0)
 		error_msg_and_exit("tgetent",
 			"Terminal type is not defined in termcap library");
+}
+
+void	init_terminal_data(char *termtype)
+{
+	int				ret;
+	struct termios	new_term;
+
+	get_terminal_data(termtype);
 	ret = tcgetattr(STDIN_FILENO, &g_msh.orig_term);
 	if (ret < 0)
 		error_msg_and_exit("tcgetattr", SYSERR);

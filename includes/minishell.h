@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/25 22:12:03 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/27 09:24:52 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,13 @@ void	sig_prompt(int signum);
 /*
 ** FILE: termcap.c
 */
+void	get_terminal_data(char *termtype);
 void	init_terminal_data(char *termtype);
+void	restore_terminal_data(bool from_exit);
 /*
 ** FILE: term_handler.c
 */
-int		terminal_handler(char *buf);
-void	restore_terminal_data(bool from_exit);
+int		terminal_handler(char *termtype, char *buf);
 /*
 ** FOLDER: builtins.c
 */
