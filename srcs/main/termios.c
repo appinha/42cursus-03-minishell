@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/28 21:27:59 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:25:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 #include "minishell.h"
 
-static int	term_newline()
+static int	term_newline(void)
 {
 	ft_printf("\n");
 	return (1);
@@ -68,7 +68,6 @@ static void	term_get_char(int len, int col, char c)
 	ft_printf("%c", c);
 	if ((len + g_msh.len_prompt) % (col - 1) == 0)
 		tputs(tgetstr("do", NULL), 1, &ft_putchar_int);
-
 }
 
 int	terminal_handler(char *termtype, char *buf)
