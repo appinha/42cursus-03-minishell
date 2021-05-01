@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:47:32 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/30 09:02:17 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:17:48 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char *ptr;
+	char	*ptr;
 
 	ptr = s;
 	while (n--)
