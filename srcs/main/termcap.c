@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:29:01 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:22:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/30 11:27:12 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_terminal_data(char *termtype)
 	ret = tcgetattr(STDIN_FILENO, &g_msh.orig_term);
 	if (ret < 0)
 		error_msg_and_exit("tcgetattr", SYSERR);
-	ft_memcpy(&new_term, &g_msh.orig_term, sizeof(new_term));
+	ft_memcpy(&new_term, &g_msh.orig_term, sizeof(struct termios));
 	new_term.c_lflag &= ~(ECHO | ICANON);
 	new_term.c_cc[VMIN] = 1;
 	new_term.c_cc[VTIME] = 0;

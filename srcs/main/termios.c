@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:39:53 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:27:59 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ static void	term_get_char(int len, int col, char c)
 {
 	char	*tmp;
 
-	if (!ft_isprint(c))
+	if (ft_isprint(c) == false)
 		return ;
 	tmp = calloc_ver(1, len + 2);
 	ft_memcpy(tmp, g_msh.cmd_line, len);
 	tmp[len] = c;
 	tmp[len + 1] = '\0';
-	free(g_msh.cmd_line);
+	free_null(g_msh.cmd_line);
 	g_msh.cmd_line = tmp;
 	ft_printf("%c", c);
 	if ((len + g_msh.len_prompt) % (col - 1) == 0)
