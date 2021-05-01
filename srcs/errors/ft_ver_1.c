@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_ver_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:58:06 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/25 20:05:11 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:25:12 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "errors.h"
 
-void	*malloc_ver(size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (ptr == NULL)
-		error_msg_and_exit("malloc", SYSERR);
-	return (ptr);
-}
-
-void	*calloc_ver(size_t count, size_t size)
-{
-	void	*ptr;
-
-	ptr = ft_calloc(count, size);
-	if (ptr == NULL)
-		error_msg_and_exit("ft_calloc", SYSERR);
-	return (ptr);
-}
-
-int	open_ver(char *file)
+int	open_ver(const char *file)
 {
 	int		fd;
 
@@ -56,4 +36,11 @@ void	close_ver(int fd)
 {
 	if (close(fd) < 0)
 		error_msg_and_exit("close", SYSERR);
+}
+
+void	free_null(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+	ptr = NULL;
 }
