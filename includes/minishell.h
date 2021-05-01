@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:40:00 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:47:12 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@
 # define EOT		4
 
 # define DEL		127
-# define ESC		27
+# define ARROW_UP	"\e[A"
+# define ARROW_DO	"\e[B"
+# define ARROW_LE	"\e[C"
+# define ARROW_RI	"\e[D"
 
 # define C_END		"\033[0m"
 # define C_BOLD		"\033[1m"
@@ -48,12 +51,22 @@
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              STRUCT DECLARATIONS
 */
+typedef struct s_hist
+{
+	int				nbr;
+	char			*cmd_line;
+	struct s_hist	*prev;
+	struct s_hist	*next;
+}	t_hist;
+
 typedef struct s_msh
 {
 	t_dict			*dict_env;
 	struct termios	orig_term;
 	int				len_prompt;
 	char			*cmd_line;
+	t_hist			*history;
+	t_hist			*history_last;
 }	t_msh;
 
 /*
@@ -71,8 +84,9 @@ t_msh	g_msh;
 */
 char	*ft_getenv(char *env);
 void	print_prompt(char *user);
-int		ft_putchar_int(int c);
 void	set_exit_status(int status);
+int		ft_putchar_int(int c);
+int		get_nbr_len(int	nbr);
 /*
 ** FILE: signal.c
 */
@@ -88,6 +102,11 @@ void	restore_terminal_data(bool from_exit);
 ** FILE: term_handler.c
 */
 int		terminal_handler(char *termtype, char *buf);
+/*
+** FILE: history.c
+*/
+void	put_input_in_history(char *input_line);
+void	print_history(t_hist *lst);
 /*
 ** FOLDER: builtins.c
 */

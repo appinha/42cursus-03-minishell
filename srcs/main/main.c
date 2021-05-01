@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/27 09:39:53 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:58:49 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@ static void	parser(char *line)
 {
 	if (ft_strcmp(line, "exit") == 0)
 		msh_exit();
-	if (ft_strcmp(line, "") == 0)
+	else if (ft_strcmp(line, "") == 0)
 		return ;
+	else if (ft_strcmp(line, "history") == 0)
+		print_history(g_msh.history);
 	else
 		ft_printf("minishell: command not found: %s\n", line);
+	free_null(g_msh.cmd_line);
 }
 
 static void	get_input(char *termtype)
 {
 	int		listen;
 	char	buf[3];
+	char	*tmp;
 
-	g_msh.cmd_line = calloc_ver(2, sizeof(char));
+	g_msh.cmd_line = calloc_ver(1, sizeof(char));
 	listen = 0;
 	while (listen == 0)
 	{
@@ -37,6 +41,9 @@ static void	get_input(char *termtype)
 			sig_prompt(EOT);
 		listen = terminal_handler(termtype, buf);
 	}
+	tmp = ft_strtrim(g_msh.cmd_line, " ");
+	free_null(g_msh.cmd_line);
+	g_msh.cmd_line = tmp;
 }
 
 static void	get_environ(char **__environ)
@@ -63,6 +70,7 @@ static void	get_environ(char **__environ)
 
 int	main(void)
 {
+	ft_bzero(&g_msh, sizeof(t_msh));
 	get_environ(__environ);
 	while (true)
 	{
@@ -71,8 +79,8 @@ int	main(void)
 		signal_handler(PROMPT);
 		get_input(ft_getenv("TERM"));
 		restore_terminal_data(false);
+		put_input_in_history(g_msh.cmd_line);
 		parser(g_msh.cmd_line);
-		free(g_msh.cmd_line);
 	}
 	return (EXIT_SUCCESS);
 }
