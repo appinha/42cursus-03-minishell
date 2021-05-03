@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 18:40:59 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/01 19:30:01 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/02 16:08:34 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,4 @@ void	print_prompt(char *user)
 void	set_exit_status(int status)
 {
 	dict_insert(g_msh.dict_env, "?", ft_itoa(status));
-}
-
-int	ft_putchar_int(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	get_nbr_len(int	nbr)
-{
-	int	len;
-
-	len = 0;
-	while (nbr)
-	{
-		nbr /= 10;
-		len++;
-	}
-	return (len);
 }

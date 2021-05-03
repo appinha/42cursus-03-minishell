@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/01 19:25:43 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/02 22:18:02 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@
 
 static int	term_newline(void)
 {
+	free_null(g_msh.tmp_input);
 	ft_printf("\n");
 	return (1);
 }
 
-static void	term_backspace(int len, int col)
+void	term_backspace(int len, int col)
 {
 	if (len > 0)
 	{
@@ -48,10 +49,34 @@ static void	term_backspace(int len, int col)
 	return ;
 }
 
-// static void	term_arrow()
-// {
-// 	return ;
-// }
+static void	term_arrow(char arrow)
+{
+	if (!g_msh.history
+		|| (arrow == 'A' && g_msh.is_history == true && !g_msh.hist_curr->prev)
+		|| (arrow == 'B' && g_msh.is_history == false))
+		return ;
+	if (arrow == 'A' && g_msh.is_history == false)
+		g_msh.tmp_input = strdup_ver(g_msh.cmd_line);
+	term_clear_line(ft_strlen(g_msh.cmd_line), tgetnum("col"));
+	if (arrow == 'B' && g_msh.is_history == true && !g_msh.hist_curr->next)
+	{
+		free_null(g_msh.cmd_line);
+		g_msh.cmd_line = g_msh.tmp_input;
+		g_msh.tmp_input = NULL;
+		g_msh.is_history = false;
+	}
+	else
+	{
+		if (arrow == 'A' && g_msh.is_history == true)
+			g_msh.hist_curr = g_msh.hist_curr->prev;
+		if (arrow == 'B')
+			g_msh.hist_curr = g_msh.hist_curr->next;
+		free_null(g_msh.cmd_line);
+		g_msh.cmd_line = strdup_ver(g_msh.hist_curr->cmd_line);
+		g_msh.is_history = true;
+	}
+	ft_printf("%s", g_msh.cmd_line);
+}
 
 static void	term_get_char(int len, int col, char c)
 {
@@ -72,17 +97,21 @@ static void	term_get_char(int len, int col, char c)
 
 int	terminal_handler(char *termtype, char *buf)
 {
-	int	len;
+	int	max_len;
 	int	col;
 
-	len = ft_strlen(g_msh.cmd_line);
+	max_len = ft_strlen(g_msh.cmd_line);
 	get_terminal_data(termtype);
 	col = tgetnum("col");
 	if (buf[0] == '\n')
 		return (term_newline());
 	else if (buf[0] == DEL)
-		term_backspace(len, col);
+		term_backspace(max_len, col);
+	else if (ft_strncmp(buf, ARROW_UP, 3) == 0)
+		term_arrow('A');
+	else if (ft_strncmp(buf, ARROW_DO, 3) == 0)
+		term_arrow('B');
 	else
-		term_get_char(len, col, buf[0]);
+		term_get_char(max_len, col, buf[0]);
 	return (0);
 }

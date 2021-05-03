@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/01 18:58:49 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/02 19:31:35 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	parser(char *line)
 		print_history(g_msh.history);
 	else
 		ft_printf("minishell: command not found: %s\n", line);
-	free_null(g_msh.cmd_line);
 }
 
 static void	get_input(char *termtype)
@@ -74,13 +73,15 @@ int	main(void)
 	get_environ(__environ);
 	while (true)
 	{
+		g_msh.is_history = false;
 		print_prompt(ft_getenv("USER"));
 		init_terminal_data(ft_getenv("TERM"));
 		signal_handler(PROMPT);
 		get_input(ft_getenv("TERM"));
 		restore_terminal_data(false);
-		put_input_in_history(g_msh.cmd_line);
 		parser(g_msh.cmd_line);
+		put_input_in_history(g_msh.cmd_line);
+		free_null(g_msh.cmd_line);
 	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/01 18:47:12 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/02 16:13:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ typedef struct s_msh
 	struct termios	orig_term;
 	int				len_prompt;
 	char			*cmd_line;
+	char			*tmp_input;
 	t_hist			*history;
-	t_hist			*history_last;
+	t_hist			*hist_curr;
+	bool			is_history;
 }	t_msh;
 
 /*
@@ -85,8 +87,6 @@ t_msh	g_msh;
 char	*ft_getenv(char *env);
 void	print_prompt(char *user);
 void	set_exit_status(int status);
-int		ft_putchar_int(int c);
-int		get_nbr_len(int	nbr);
 /*
 ** FILE: signal.c
 */
@@ -102,6 +102,13 @@ void	restore_terminal_data(bool from_exit);
 ** FILE: term_handler.c
 */
 int		terminal_handler(char *termtype, char *buf);
+void	term_backspace(int len, int col);
+/*
+** FILE: term_utils.c
+*/
+int		ft_putchar_int(int c);
+int		get_nbr_len(int	nbr);
+void	term_clear_line(int len, int col);
 /*
 ** FILE: history.c
 */
