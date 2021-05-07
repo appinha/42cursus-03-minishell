@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/02 22:18:02 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/06 20:40:47 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 static int	term_newline(void)
 {
-	free_null(g_msh.tmp_input);
+	free_null((void **)&g_msh.tmp_input);
 	ft_printf("\n");
 	return (1);
 }
@@ -60,7 +60,7 @@ static void	term_arrow(char arrow)
 	term_clear_line(ft_strlen(g_msh.cmd_line), tgetnum("col"));
 	if (arrow == 'B' && g_msh.is_history == true && !g_msh.hist_curr->next)
 	{
-		free_null(g_msh.cmd_line);
+		free_null((void **)&g_msh.cmd_line);
 		g_msh.cmd_line = g_msh.tmp_input;
 		g_msh.tmp_input = NULL;
 		g_msh.is_history = false;
@@ -71,7 +71,7 @@ static void	term_arrow(char arrow)
 			g_msh.hist_curr = g_msh.hist_curr->prev;
 		if (arrow == 'B')
 			g_msh.hist_curr = g_msh.hist_curr->next;
-		free_null(g_msh.cmd_line);
+		free_null((void **)&g_msh.cmd_line);
 		g_msh.cmd_line = strdup_ver(g_msh.hist_curr->cmd_line);
 		g_msh.is_history = true;
 	}
@@ -88,7 +88,7 @@ static void	term_get_char(int len, int col, char c)
 	ft_memcpy(tmp, g_msh.cmd_line, len);
 	tmp[len] = c;
 	tmp[len + 1] = '\0';
-	free_null(g_msh.cmd_line);
+	free_null((void **)&g_msh.cmd_line);
 	g_msh.cmd_line = tmp;
 	ft_printf("%c", c);
 	if ((len + g_msh.len_prompt) % (col - 1) == 0)

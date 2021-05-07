@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/02 19:31:35 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/07 12:34:18 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	get_input(char *termtype)
 		listen = terminal_handler(termtype, buf);
 	}
 	tmp = ft_strtrim(g_msh.cmd_line, " ");
-	free_null(g_msh.cmd_line);
+	free_null((void **)&g_msh.cmd_line);
 	g_msh.cmd_line = tmp;
 }
 
@@ -54,9 +54,7 @@ static void	get_environ(char **__environ)
 	i = 0;
 	while (__environ[i])
 	{
-		split = ft_split(__environ[i], '=');
-		if (!split)
-			break ;
+		split = ft_split_ver(__environ[i], '=');
 		if (split[0] && split[1])
 			dict_insert_ver(g_msh.dict_env, split[0], ft_strdup(split[1]));
 		else if (split[0])
@@ -81,7 +79,7 @@ int	main(void)
 		restore_terminal_data(false);
 		parser(g_msh.cmd_line);
 		put_input_in_history(g_msh.cmd_line);
-		free_null(g_msh.cmd_line);
+		free_null((void **)&g_msh.cmd_line);
 	}
 	return (EXIT_SUCCESS);
 }
