@@ -6,29 +6,29 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:29:45 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/28 21:23:42 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/06 20:22:32 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "errors.h"
 
-void	*calloc_ver(size_t count, size_t size)
+char	*strdup_ver(const char *s1)
 {
 	void	*ptr;
 
-	ptr = ft_calloc(count, size);
+	ptr = ft_strdup(s1);
 	if (ptr == NULL)
-		error_msg_and_exit("ft_calloc", SYSERR);
+		error_msg_and_exit("ft_strdup", SYSERR);
 	return (ptr);
 }
 
-char	*strdup_ver(const char *str)
+char	**ft_split_ver(const char *s, char c)
 {
-	void	*ptr;
+	char	**ptr;
 
-	ptr = ft_strdup(str);
+	ptr = ft_split(s, c);
 	if (ptr == NULL)
-		error_msg_and_exit("ft_strdup", SYSERR);
+		error_msg_and_exit("ft_split", SYSERR);
 	return (ptr);
 }
 
@@ -46,4 +46,10 @@ void	dict_insert_ver(t_dict *dict, const char *key, void *value)
 {
 	if (dict_insert(dict, key, value) < 0)
 		error_msg_and_exit("dict_insert", SYSERR);
+}
+
+void	getcwd_ver(char *buf, size_t size)
+{
+	if (getcwd(buf, size) == NULL)
+		error_msg_and_exit("getcwd", SYSERR);
 }
