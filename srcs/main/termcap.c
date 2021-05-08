@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:29:01 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 13:42:50 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 20:08:47 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,16 @@ void	init_terminal_data(char *termtype)
 		error_msg_and_exit("tcsetattr", SYSERR);
 }
 
-void	restore_terminal_data(void)
+void	restore_terminal_data(bool from_msh_destroy)
 {
 	int	ret;
 
 	ret = tcsetattr(STDIN_FILENO, TCSAFLUSH, &g_msh.orig_term);
 	if (ret == -1)
-		error_msg_and_exit("tcsetattr", SYSERR);
+	{
+		if (from_msh_destroy == false)
+			error_msg_and_exit("tcsetattr", SYSERR);
+		else
+			exit(EXIT_FAILURE);
+	}
 }

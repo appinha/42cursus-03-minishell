@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:59:31 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 13:50:13 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 19:48:29 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	msh_exit(void)
 {
-	restore_terminal_data();
+	msh_destroy();
 	exit(EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 13:50:22 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 20:08:42 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_msh	g_msh;
 char	*ft_getenv(char *env);
 void	print_prompt(char *user);
 void	set_exit_status(int status);
+void	msh_destroy(void);
 /*
 ** FILE: signal.c
 */
@@ -97,7 +98,7 @@ void	sig_prompt(int signum);
 */
 void	get_terminal_data(char *termtype);
 void	init_terminal_data(char *termtype);
-void	restore_terminal_data(void);
+void	restore_terminal_data(bool from_msh_destroy);
 /*
 ** FILE: term_handler.c
 */

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 18:40:59 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/06 20:55:14 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 20:21:46 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,11 @@ void	print_prompt(char *user)
 void	set_exit_status(int status)
 {
 	dict_insert(g_msh.dict_env, "?", ft_itoa(status));
+}
+
+void	msh_destroy(void)
+{
+	dict_destroy(g_msh.dict_env);
+	free_null((void **)&g_msh.cmd_line);
+	restore_terminal_data(true);
 }
