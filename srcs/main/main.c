@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/07 12:34:18 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/07 23:18:40 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(void)
 		init_terminal_data(ft_getenv("TERM"));
 		signal_handler(PROMPT);
 		get_input(ft_getenv("TERM"));
-		restore_terminal_data(false);
+		restore_terminal_data();
 		parser(g_msh.cmd_line);
 		put_input_in_history(g_msh.cmd_line);
 		free_null((void **)&g_msh.cmd_line);

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/02 16:13:43 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 13:50:22 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	sig_prompt(int signum);
 */
 void	get_terminal_data(char *termtype);
 void	init_terminal_data(char *termtype);
-void	restore_terminal_data(bool from_exit);
+void	restore_terminal_data(void);
 /*
 ** FILE: term_handler.c
 */
@@ -117,7 +117,6 @@ void	print_history(t_hist *lst);
 /*
 ** FOLDER: builtins.c
 */
-void	msh_destroy(void);
 void	msh_exit(void);
 
 #endif
