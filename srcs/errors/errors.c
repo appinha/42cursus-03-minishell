@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:58:19 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/07 12:18:15 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 19:29:13 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ void	error_msg_and_exit(char *function, char *msg)
 		ft_putstr_fd(function, STDERR_FILENO);
 		ft_putstr_fd("\n", STDERR_FILENO);
 	}
-	exit(EXIT_FAILURE);
+	if (errno)
+		exit(errno);
+	else
+		exit(1);
 }
