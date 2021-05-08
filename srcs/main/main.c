@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/07 23:18:40 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 14:05:01 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ static void	get_environ(char **__environ)
 	dict_insert_ver(g_msh.dict_env, "?", ft_strdup("0"));
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
+	if (argc > 1 && argv)
+		error_msg_and_exit("minishell", "too many arguments");
 	ft_bzero(&g_msh, sizeof(t_msh));
 	get_environ(__environ);
 	while (true)
