@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/21 10:49:38 by apuchill          #+#    #+#              #
-#    Updated: 2021/04/25 22:08:20 by apuchill         ###   ########.fr        #
+#    Updated: 2021/05/09 11:49:17 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LFT_FLAGS	= -L $(LIBFT_DIR) -lft
 
 CC			= clang
 # CFLAGS		= -Wall -Wextra -Werror
-CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
+CFLAGS		= -g -Wall -Wextra -Werror
+# CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
 RM			= /bin/rm -f
 NORM		= norminette
 
