@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/06 20:40:47 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:15:09 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static int	term_newline(void)
 	return (1);
 }
 
-void	term_backspace(int len, int col)
+void	term_backspace(t_stream *stream, int max_len, int col)
 {
-	if (len > 0)
+	if (max_len > 0)
 	{
-		g_msh.cmd_line[len - 1] = '\0';
+		g_msh.cmd_line[max_len - 1] = '\0';
 		tputs(tgetstr("le", NULL), 1, &ft_putchar_int);
 		tputs(tgetstr("dc", NULL), 1, &ft_putchar_int);
-		if ((g_msh.len_prompt + len) % (col) == 0)
+		if ((stream->len_prompt + max_len) % (col) == 0)
 		{
 			tputs(tgetstr("up", NULL), 1, &ft_putchar_int);
 			tputs(tgoto(tgetstr("ch", NULL), 0, col), 0, &ft_putchar_int);
@@ -49,7 +49,7 @@ void	term_backspace(int len, int col)
 	return ;
 }
 
-static void	term_arrow(char arrow)
+static void	term_arrow(t_stream *stream, char arrow)
 {
 	if (!g_msh.history
 		|| (arrow == 'A' && g_msh.is_history == true && !g_msh.hist_curr->prev)
@@ -57,7 +57,7 @@ static void	term_arrow(char arrow)
 		return ;
 	if (arrow == 'A' && g_msh.is_history == false)
 		g_msh.tmp_input = strdup_ver(g_msh.cmd_line);
-	term_clear_line(ft_strlen(g_msh.cmd_line), tgetnum("col"));
+	term_clear_line(stream, ft_strlen(g_msh.cmd_line), tgetnum("col"));
 	if (arrow == 'B' && g_msh.is_history == true && !g_msh.hist_curr->next)
 	{
 		free_null((void **)&g_msh.cmd_line);
@@ -78,24 +78,24 @@ static void	term_arrow(char arrow)
 	ft_printf("%s", g_msh.cmd_line);
 }
 
-static void	term_get_char(int len, int col, char c)
+static void	term_get_char(t_stream *stream, int max_len, int col, char c)
 {
 	char	*tmp;
 
 	if (ft_isprint(c) == false)
 		return ;
-	tmp = calloc_ver(1, len + 2);
-	ft_memcpy(tmp, g_msh.cmd_line, len);
-	tmp[len] = c;
-	tmp[len + 1] = '\0';
+	tmp = calloc_ver(1, max_len + 2);
+	ft_memcpy(tmp, g_msh.cmd_line, max_len);
+	tmp[max_len] = c;
+	tmp[max_len + 1] = '\0';
 	free_null((void **)&g_msh.cmd_line);
 	g_msh.cmd_line = tmp;
 	ft_printf("%c", c);
-	if ((len + g_msh.len_prompt) % (col - 1) == 0)
+	if ((stream->len_prompt + max_len) % (col - 1) == 0)
 		tputs(tgetstr("do", NULL), 1, &ft_putchar_int);
 }
 
-int	terminal_handler(char *termtype, char *buf)
+int	terminal_handler(char *termtype, t_stream *stream, char *buf)
 {
 	int	max_len;
 	int	col;
@@ -106,12 +106,12 @@ int	terminal_handler(char *termtype, char *buf)
 	if (buf[0] == '\n')
 		return (term_newline());
 	else if (buf[0] == DEL)
-		term_backspace(max_len, col);
+		term_backspace(stream, max_len, col);
 	else if (ft_strncmp(buf, ARROW_UP, 3) == 0)
-		term_arrow('A');
+		term_arrow(stream, 'A');
 	else if (ft_strncmp(buf, ARROW_DO, 3) == 0)
-		term_arrow('B');
+		term_arrow(stream, 'B');
 	else
-		term_get_char(max_len, col, buf[0]);
+		term_get_char(stream, max_len, col, buf[0]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 16:08:14 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/02 16:13:30 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:12:39 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	get_nbr_len(int	nbr)
 	return (len);
 }
 
-void	term_clear_line(int len, int col)
+void	term_clear_line(t_stream *stream, int max_len, int col)
 {
-	while (len)
+	while (max_len)
 	{
-		term_backspace(len, col);
-		len--;
+		term_backspace(stream, max_len, col);
+		max_len--;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 21:59:43 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:03:08 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	parser(char *line)
 		ft_printf("minishell: command not found: %s\n", line);
 }
 
-static void	get_input(char *termtype)
+static void	get_input(char *termtype, t_stream *stream)
 {
 	int		listen;
 	char	buf[3];
@@ -38,9 +38,9 @@ static void	get_input(char *termtype)
 		read_ver(STDIN_FILENO, &buf, 3);
 		if (buf[0] == EOT && g_msh.cmd_line[0] == '\0')
 			sig_prompt(EOT);
-		listen = terminal_handler(termtype, buf);
+		listen = terminal_handler(termtype, stream, buf);
 	}
-	tmp = ft_strtrim(g_msh.cmd_line, " ");
+	tmp = ft_strtrim(g_msh.cmd_line, " "); //TODO: include return check NULL
 	free_null((void **)&g_msh.cmd_line);
 	g_msh.cmd_line = tmp;
 }
@@ -74,10 +74,10 @@ int	main(int argc, char *argv[])
 	while (true)
 	{
 		g_msh.is_history = false;
-		print_prompt(ft_getenv("USER"));
+		print_prompt(ft_getenv("USER"), &g_msh.stream.len_prompt);
 		init_terminal_data(ft_getenv("TERM"));
 		signal_handler(PROMPT);
-		get_input(ft_getenv("TERM"));
+		get_input(ft_getenv("TERM"), &g_msh.stream);
 		restore_terminal_data(false);
 		parser(g_msh.cmd_line);
 		put_input_in_history(g_msh.cmd_line);

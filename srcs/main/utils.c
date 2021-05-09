@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 18:40:59 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 21:45:13 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 11:58:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ char	*ft_getenv(char *env)
 	return (value);
 }
 
-void	print_prompt(char *user)
+void	print_prompt(char *user, int *len_prompt)
 {
 	char	cwd[PATH_MAX];
 
 	getcwd_ver(cwd, PATH_MAX);
 	ft_printf(C_BOLD C_GREEN "➜  %s " C_PINK "%s " C_YELLOW "✗ " C_END,
 		user, cwd);
-	g_msh.len_prompt = 3 + ft_strlen(user) + 1 + ft_strlen(cwd) + 3;
+	*len_prompt = 3 + ft_strlen(user) + 1 + ft_strlen(cwd) + 3;
 }
 
 void	set_exit_status(int status)

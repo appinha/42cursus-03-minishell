@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 21:59:43 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:12:20 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,16 @@ typedef struct s_hist
 	struct s_hist	*next;
 }	t_hist;
 
+typedef struct s_stream
+{
+	int				len_prompt;
+}	t_stream;
+
 typedef struct s_msh
 {
 	t_dict			*dict_env;
 	struct termios	orig_term;
-	int				len_prompt;
+	t_stream		stream;
 	char			*cmd_line;
 	char			*tmp_input;
 	t_hist			*history;
@@ -85,7 +90,7 @@ t_msh	g_msh;
 ** FILE: utils.c
 */
 char	*ft_getenv(char *env);
-void	print_prompt(char *user);
+void	print_prompt(char *user, int *len_prompt);
 void	set_exit_status(int status);
 void	msh_destroy(void);
 /*
@@ -102,14 +107,14 @@ void	restore_terminal_data(bool from_msh_destroy);
 /*
 ** FILE: term_handler.c
 */
-int		terminal_handler(char *termtype, char *buf);
-void	term_backspace(int len, int col);
+int		terminal_handler(char *termtype, t_stream *stream, char *buf);
+void	term_backspace(t_stream *stream, int max_len, int col);
 /*
 ** FILE: term_utils.c
 */
 int		ft_putchar_int(int c);
 int		get_nbr_len(int	nbr);
-void	term_clear_line(int len, int col);
+void	term_clear_line(t_stream *stream, int max_len, int col);
 /*
 ** FILE: history.c
 */
