@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:29:01 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 20:08:47 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:42:20 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	restore_terminal_data(bool from_msh_destroy)
 {
 	int	ret;
 
+	if (!g_msh.orig_term.c_lflag)
+		return ;
 	ret = tcsetattr(STDIN_FILENO, TCSAFLUSH, &g_msh.orig_term);
 	if (ret == -1)
 	{
