@@ -6,13 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:59:31 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 19:48:29 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:59:18 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	msh_exit(void)
+void	builtin_exit(void)
 {
 	msh_destroy();
 	exit(EXIT_SUCCESS);

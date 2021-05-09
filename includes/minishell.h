@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 21:51:44 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:59:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	erase_history(t_hist **lst);
 /*
 ** FOLDER: builtins.c
 */
-void	msh_exit(void);
-void	print_history(t_hist *lst);
+void	builtin_exit(void);
+void	builtin_history(t_hist *lst);
 
 #endif

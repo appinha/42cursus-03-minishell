@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:22:40 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/06 20:40:32 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:59:18 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sig_prompt(int signum)
 	if (signum == EOT)
 	{
 		ft_printf("exit\n");
-		msh_exit();
+		builtin_exit();
 	}
 }
 

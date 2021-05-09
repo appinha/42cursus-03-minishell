@@ -6,13 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 21:14:25 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 21:52:00 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:59:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_history(t_hist *node)
+void	builtin_history(t_hist *node)
 {
 	int	max_len;
 	int	padding;

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 20:09:01 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:59:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static void	parser(char *line)
 {
 	if (ft_strcmp(line, "exit") == 0)
-		msh_exit();
+		builtin_exit();
 	else if (ft_strcmp(line, "") == 0)
 		return ;
 	else if (ft_strcmp(line, "history") == 0)
-		print_history(g_msh.history);
+		builtin_history(g_msh.history);
 	else
 		ft_printf("minishell: command not found: %s\n", line);
 }
