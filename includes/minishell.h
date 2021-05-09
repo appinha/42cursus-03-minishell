@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 20:08:42 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:51:44 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,11 @@ void	term_clear_line(int len, int col);
 ** FILE: history.c
 */
 void	put_input_in_history(char *input_line);
-void	print_history(t_hist *lst);
+void	erase_history(t_hist **lst);
 /*
 ** FOLDER: builtins.c
 */
 void	msh_exit(void);
+void	print_history(t_hist *lst);
 
 #endif

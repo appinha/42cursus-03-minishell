@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 21:54:31 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/02 19:47:49 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:26:46 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,18 @@ void	put_input_in_history(char *input_line)
 	history_lstadd_back(g_msh.hist_curr, new);
 }
 
-void	print_history(t_hist *node)
+void	erase_history(t_hist **lst)
 {
-	int	max_len;
-	int	padding;
+	t_hist	*aux;
 
-	if (!g_msh.history)
+	if (!*lst)
 		return ;
-	max_len = get_nbr_len(g_msh.hist_curr->nbr) + 1;
-	while (node->next || g_msh.history->nbr == 1)
+	while (*lst)
 	{
-		padding = max_len - get_nbr_len(node->nbr);
-		while (padding--)
-			ft_putchar(' ');
-		ft_printf("%i  %s\n", node->nbr, node->cmd_line);
-		if (!node->next)
-			return ;
-		node = node->next;
+		aux = (*lst)->next;
+		free((*lst)->cmd_line);
+		free(*lst);
+		*lst = aux;
 	}
+	*lst = NULL;
 }
