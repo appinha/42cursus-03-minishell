@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 18:40:59 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/09 11:58:43 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:26:47 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	msh_destroy(void)
 {
 	dict_destroy(g_msh.dict_env);
 	free_null((void **)&g_msh.cmd_line);
-	free_null((void **)&g_msh.tmp_input);
+	free_null((void **)&g_msh.stream.tmp_input);
 	erase_history(&g_msh.history);
 	g_msh.hist_curr = NULL;
 	restore_terminal_data(true);
