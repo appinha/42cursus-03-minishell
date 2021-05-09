@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/09 12:25:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:55:55 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ static void	get_input(char *termtype, t_stream *stream)
 	char	*tmp;
 
 	stream->is_history = false;
-	g_msh.cmd_line = calloc_ver(1, sizeof(char));
+	stream->cmd_line = calloc_ver(1, sizeof(char));
 	listen = 0;
 	while (listen == 0)
 	{
 		ft_bzero(buf, 3);
 		read_ver(STDIN_FILENO, &buf, 3);
-		if (buf[0] == EOT && g_msh.cmd_line[0] == '\0')
+		if (buf[0] == EOT && stream->cmd_line[0] == '\0')
 			sig_prompt(EOT);
 		listen = terminal_handler(termtype, stream, buf);
 	}
 	free_null((void **)&stream->tmp_input);
-	tmp = ft_strtrim(g_msh.cmd_line, " "); //TODO: include return check NULL
-	free_null((void **)&g_msh.cmd_line);
-	g_msh.cmd_line = tmp;
+	tmp = ft_strtrim(stream->cmd_line, " "); //TODO: include return check NULL
+	free_null((void **)&stream->cmd_line);
+	stream->cmd_line = tmp;
 }
 
 static void	get_environ(char **__environ)
@@ -80,9 +80,9 @@ int	main(int argc, char *argv[])
 		signal_handler(PROMPT);
 		get_input(ft_getenv("TERM"), &g_msh.stream);
 		restore_terminal_data(false);
-		parser(g_msh.cmd_line);
-		put_input_in_history(g_msh.cmd_line);
-		free_null((void **)&g_msh.cmd_line);
+		parser(g_msh.stream.cmd_line);
+		put_input_in_history(g_msh.stream.cmd_line);
+		free_null((void **)&g_msh.stream.cmd_line);
 	}
 	return (EXIT_SUCCESS);
 }
