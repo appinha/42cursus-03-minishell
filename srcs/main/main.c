@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/09 12:03:08 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:19:52 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	get_input(char *termtype, t_stream *stream)
 	char	buf[3];
 	char	*tmp;
 
+	stream->is_history = false;
 	g_msh.cmd_line = calloc_ver(1, sizeof(char));
 	listen = 0;
 	while (listen == 0)
@@ -73,7 +74,6 @@ int	main(int argc, char *argv[])
 	get_environ(__environ);
 	while (true)
 	{
-		g_msh.is_history = false;
 		print_prompt(ft_getenv("USER"), &g_msh.stream.len_prompt);
 		init_terminal_data(ft_getenv("TERM"));
 		signal_handler(PROMPT);

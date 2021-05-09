@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/09 12:15:09 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:21:07 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,28 @@ void	term_backspace(t_stream *stream, int max_len, int col)
 static void	term_arrow(t_stream *stream, char arrow)
 {
 	if (!g_msh.history
-		|| (arrow == 'A' && g_msh.is_history == true && !g_msh.hist_curr->prev)
-		|| (arrow == 'B' && g_msh.is_history == false))
+		|| (arrow == 'A' && stream->is_history == true && !g_msh.hist_curr->prev)
+		|| (arrow == 'B' && stream->is_history == false))
 		return ;
-	if (arrow == 'A' && g_msh.is_history == false)
+	if (arrow == 'A' && stream->is_history == false)
 		g_msh.tmp_input = strdup_ver(g_msh.cmd_line);
 	term_clear_line(stream, ft_strlen(g_msh.cmd_line), tgetnum("col"));
-	if (arrow == 'B' && g_msh.is_history == true && !g_msh.hist_curr->next)
+	if (arrow == 'B' && stream->is_history == true && !g_msh.hist_curr->next)
 	{
 		free_null((void **)&g_msh.cmd_line);
 		g_msh.cmd_line = g_msh.tmp_input;
 		g_msh.tmp_input = NULL;
-		g_msh.is_history = false;
+		stream->is_history = false;
 	}
 	else
 	{
-		if (arrow == 'A' && g_msh.is_history == true)
+		if (arrow == 'A' && stream->is_history == true)
 			g_msh.hist_curr = g_msh.hist_curr->prev;
 		if (arrow == 'B')
 			g_msh.hist_curr = g_msh.hist_curr->next;
 		free_null((void **)&g_msh.cmd_line);
 		g_msh.cmd_line = strdup_ver(g_msh.hist_curr->cmd_line);
-		g_msh.is_history = true;
+		stream->is_history = true;
 	}
 	ft_printf("%s", g_msh.cmd_line);
 }

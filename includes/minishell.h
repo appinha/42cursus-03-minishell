@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/09 12:12:20 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:19:00 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_hist
 typedef struct s_stream
 {
 	int				len_prompt;
+	bool			is_history;
 }	t_stream;
 
 typedef struct s_msh
@@ -73,7 +74,6 @@ typedef struct s_msh
 	char			*tmp_input;
 	t_hist			*history;
 	t_hist			*hist_curr;
-	bool			is_history;
 }	t_msh;
 
 /*
