@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 16:15:44 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/07 09:27:09 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:01:27 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@
 
 void	ft_split_free(char **s)
 {
+	size_t	len;
 	size_t	i;
 
 	if (!s || !*s)
 		return ;
+	len = ft_strlen_2(s);
 	i = 0;
-	while (i < ft_strlen_2(s))
+	while (i < len)
 		free(s[i++]);
 	free(s);
-	*s = NULL;
 }
