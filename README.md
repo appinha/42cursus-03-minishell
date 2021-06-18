@@ -45,7 +45,7 @@ For detailed information, refer to the [**subject of this project**](https://git
 
 * [**📁 includes:**](includes/) contains the program's headers.
 * [**📁 libft:**](libft/) contains the source code of the `libft` library, which is used in the program.
-* [**📁 srcs:**](libft/) contains the source code of the program.
+* [**📁 srcs:**](srcs/) contains the source code of the program.
 * [**Makefile**](Makefile) - contains instructions for compiling the program and testing it.
 
 _Note: program covers only mandatory requirements of the project's subject._
@@ -331,3 +331,10 @@ Sets the parameters associated with the terminal referred to by the open file de
 | **strerror**	| `man strerror`	| `<string.h>`		| return string describing error number
 | **errno**		| `man errno`		| `<errno.h>`		| number of last error
 | **termcap**	| `man termcap`, `man termios`		| `<term.h>`		| direct curses interface to the terminfo capability database
+
+---
+
+## TO DO
+
+* Corrigir bugs quando se usa algum `signal` - revisar lógica do termcaps pra evitar possíveis segfaults dependendo do momento em que o signal for acionado.
+* Refatorar `get_environ()` para caso de mais de um `=` na string (i.e. valor da variável de ambiente contendo o caracter separador `=`).
