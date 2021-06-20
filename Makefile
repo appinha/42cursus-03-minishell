@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/21 10:49:38 by apuchill          #+#    #+#              #
-#    Updated: 2021/05/09 11:49:17 by apuchill         ###   ########.fr        #
+#    Updated: 2021/06/20 18:38:41 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LFT_FLAGS	= -L $(LIBFT_DIR) -lft
 
 CC			= clang
 # CFLAGS		= -Wall -Wextra -Werror
-CFLAGS		= -g -Wall -Wextra -Werror
+CFLAGS		= -g
 # CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
 RM			= /bin/rm -f
 NORM		= norminette
@@ -67,6 +67,11 @@ reset:
 .PHONY:		sh
 sh:			reset all
 			./minishell
+
+# Compile with -g for line number information
+.PHONY:		valgrind
+valgrind:	reset all
+			valgrind -q --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
 
 .PHONY:		norm
 norm:
