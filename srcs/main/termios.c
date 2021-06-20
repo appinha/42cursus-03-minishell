@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 21:08:47 by apuchill          #+#    #+#             */
-/*   Updated: 2021/06/20 19:09:20 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:40:25 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ void	term_backspace(t_stream *stream, int max_len, int col)
 	return ;
 }
 
-static void	term_arrow(t_stream *stream, char arrow)
+static void	term_arrow(t_stream *stream, char arrow, bool is_history)
 {
 	if (!g_msh.history
-		|| (arrow == 'U' && stream->is_history == true && !g_msh.hist_curr->prev)
-		|| (arrow == 'D' && stream->is_history == false))
+		|| (arrow == 'U' && is_history == true && !g_msh.hist_curr->prev)
+		|| (arrow == 'D' && is_history == false))
 		return ;
-	if (arrow == 'U' && stream->is_history == false)
+	if (arrow == 'U' && is_history == false)
 		stream->tmp_input = strdup_ver(stream->cmd_line);
 	term_clear_line(stream, ft_strlen(stream->cmd_line), tgetnum("col"));
-	if (arrow == 'D' && stream->is_history == true && !g_msh.hist_curr->next)
+	if (arrow == 'D' && is_history == true && !g_msh.hist_curr->next)
 	{
 		free_null((void **)&stream->cmd_line);
 		stream->cmd_line = stream->tmp_input;
@@ -66,7 +66,7 @@ static void	term_arrow(t_stream *stream, char arrow)
 	}
 	else
 	{
-		if (arrow == 'U' && stream->is_history == true)
+		if (arrow == 'U' && is_history == true)
 			g_msh.hist_curr = g_msh.hist_curr->prev;
 		if (arrow == 'D')
 			g_msh.hist_curr = g_msh.hist_curr->next;
@@ -107,9 +107,9 @@ int	terminal_handler(char *termtype, t_stream *stream, char *buf)
 	else if (buf[0] == DEL)
 		term_backspace(stream, max_len, col);
 	else if (ft_strncmp(buf, ARROW_UP, 3) == 0)
-		term_arrow(stream, 'U');
+		term_arrow(stream, 'U', stream->is_history);
 	else if (ft_strncmp(buf, ARROW_DO, 3) == 0)
-		term_arrow(stream, 'D');
+		term_arrow(stream, 'D', stream->is_history);
 	else
 		term_get_char(stream, max_len, col, buf[0]);
 	return (0);
