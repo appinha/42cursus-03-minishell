@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:23:43 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/09 12:52:56 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:33:47 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	term_clear_line(t_stream *stream, int max_len, int col);
 */
 void	put_input_in_history(char *input_line);
 void	erase_history(t_hist **lst);
+void	history_go_to_last(t_hist **lst);
 /*
 ** FOLDER: builtins.c
 */

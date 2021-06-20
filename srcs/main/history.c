@@ -6,13 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 21:54:31 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 21:26:46 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:34:08 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	history_lstlast(t_hist **lst)
+void	history_go_to_last(t_hist **lst)
 {
 	if (!*lst)
 		return ;
@@ -31,7 +31,7 @@ static void	history_lstadd_back(t_hist *last, t_hist *new)
 		g_msh.hist_curr = new;
 		return ;
 	}
-	history_lstlast(&last);
+	history_go_to_last(&last);
 	new->nbr = last->nbr + 1;
 	last->next = new;
 	new->prev = last;
@@ -53,7 +53,7 @@ void	put_input_in_history(char *input_line)
 {
 	t_hist	*new;
 
-	history_lstlast(&g_msh.hist_curr);
+	history_go_to_last(&g_msh.hist_curr);
 	if (is_valid_cmd(input_line) == false)
 		return ;
 	new = calloc_ver(1, sizeof(t_hist));

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 11:22:40 by apuchill          #+#    #+#             */
-/*   Updated: 2021/06/20 19:03:44 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:35:07 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	sig_prompt(int signum)
 		g_msh.stream.cmd_line = calloc_ver(1, sizeof(char));
 		free_null((void **)&g_msh.stream.tmp_input);
 		g_msh.stream.is_history = false;
+		history_go_to_last(&g_msh.hist_curr);
 		print_prompt(ft_getenv("USER"), &g_msh.stream.len_prompt);
 	}
 	if (signum == EOT)
