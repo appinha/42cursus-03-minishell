@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 18:40:59 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/09 12:56:06 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 13:18:26 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	set_exit_status(int status)
 
 void	msh_destroy(void)
 {
-	dict_destroy(g_msh.dict_env);
+	dict_destroy(g_msh.dict_env, free);
 	free_null((void **)&g_msh.stream.cmd_line);
 	free_null((void **)&g_msh.stream.tmp_input);
 	erase_history(&g_msh.history);

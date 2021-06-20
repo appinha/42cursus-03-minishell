@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 20:08:06 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/03 21:40:55 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 12:29:57 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,7 @@
 ** -> dict: Pointer to dictionary to be destroyed.
 */
 
-void	free_entry(t_node *entry)
-{
-	free(entry->key);
-	free(entry->value);
-	free(entry);
-}
-
-void	dict_destroy(t_dict *dict)
+void	dict_destroy(t_dict *dict, void (*del)(void*))
 {
 	unsigned long int	index;
 	t_node				*aux;
@@ -40,7 +33,7 @@ void	dict_destroy(t_dict *dict)
 			while (dict->array[index])
 			{
 				aux = dict->array[index]->next;
-				free_entry(dict->array[index]);
+				del_entry(dict->array[index], del);
 				dict->array[index] = aux;
 			}
 			dict->array[index] = 0;

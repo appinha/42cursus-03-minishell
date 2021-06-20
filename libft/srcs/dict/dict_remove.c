@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:56:37 by apuchill          #+#    #+#             */
-/*   Updated: 2021/04/03 20:10:26 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 12:31:02 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,7 @@
 ** -> key: Character string used as unique identifier of entry to be removed.
 */
 
-static void	remove_entry(t_node *entry)
-{
-	free(entry->key);
-	free(entry->value);
-	free(entry);
-}
-
-void	dict_remove(t_dict *dict, const char *key)
+void	dict_remove(t_dict *dict, const char *key, void (*del)(void*))
 {
 	unsigned long int	index;
 	t_node				*entry;
@@ -42,13 +35,13 @@ void	dict_remove(t_dict *dict, const char *key)
 		if (ft_strcmp(key, entry->next->key) == 0)
 		{
 			entry->next = entry->next->next;
-			remove_entry(entry->next);
+			del_entry(entry->next, del);
 			dict->storage--;
 			return ;
 		}
 		entry = entry->next;
 	}
-	remove_entry(entry);
+	del_entry(entry, del);
 	dict->array[index] = 0;
 	dict->storage--;
 }
