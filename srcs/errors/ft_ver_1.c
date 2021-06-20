@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:58:06 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/06 20:38:33 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:48:18 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,4 @@ void	*calloc_ver(size_t count, size_t size)
 	if (ptr == NULL)
 		error_msg_and_exit("ft_calloc", SYSERR);
 	return (ptr);
-}
-
-void	free_null(void **ptr)
-{
-	if (*ptr)
-		free(*ptr);
-	*ptr = 0;
 }

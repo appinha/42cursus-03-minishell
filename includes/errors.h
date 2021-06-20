@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 22:56:35 by apuchill          #+#    #+#             */
-/*   Updated: 2021/05/08 20:15:35 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:55:38 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int		open_ver(const char *file);
 ssize_t	read_ver(int fd, void *buf, size_t nbytes);
 void	close_ver(int fd);
 void	*calloc_ver(size_t count, size_t size);
-void	free_null(void **ptr);
 /*
 ** FILE: ft_ver_2.c
 */

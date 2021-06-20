@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/06/20 18:47:31 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:55:54 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	read_line(char *termtype, t_stream *stream)
 			sig_prompt(EOT);
 		listen = terminal_handler(termtype, stream, buf);
 	}
-	free_null((void **)&stream->tmp_input);
+	ft_free_null((void **)&stream->tmp_input);
 	tmp = ft_strtrim(stream->cmd_line, " "); //TODO: include return check NULL
-	free_null((void **)&stream->cmd_line);
+	ft_free_null((void **)&stream->cmd_line);
 	stream->cmd_line = tmp;
 }
 
@@ -82,7 +82,7 @@ int	main(int argc, char *argv[])
 		restore_terminal_data(false);
 		parser(g_msh.stream.cmd_line);
 		put_input_in_history(g_msh.stream.cmd_line);
-		free_null((void **)&g_msh.stream.cmd_line);
+		ft_free_null((void **)&g_msh.stream.cmd_line);
 	}
 	return (EXIT_SUCCESS);
 }

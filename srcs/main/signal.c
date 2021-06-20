@@ -28,7 +28,7 @@ void	sig_prompt(int signum)
 		set_exit_status(130);
 		free(g_msh.stream.cmd_line);
 		g_msh.stream.cmd_line = calloc_ver(1, sizeof(char));
-		free_null((void **)&g_msh.stream.tmp_input);
+		ft_free_null((void **)&g_msh.stream.tmp_input);
 		g_msh.stream.is_history = false;
 		history_go_to_last(&g_msh.hist_curr);
 		print_prompt(ft_getenv("USER"), &g_msh.stream.len_prompt);

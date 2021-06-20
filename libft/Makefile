@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/24 20:15:20 by apuchill          #+#    #+#              #
-#    Updated: 2021/04/03 11:31:12 by apuchill         ###   ########.fr        #
+#    Updated: 2021/06/20 19:44:16 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= libft.a
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
-SUBDIRS		= is to mem str put lst math gnl printf dict
+SUBDIRS		= is to mem free str put lst math gnl printf dict
 
 SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))

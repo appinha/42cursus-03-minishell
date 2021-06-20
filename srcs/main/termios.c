@@ -59,7 +59,7 @@ static void	term_arrow(t_stream *stream, char arrow, bool is_history)
 	term_clear_line(stream, ft_strlen(stream->cmd_line), tgetnum("col"));
 	if (arrow == 'D' && is_history == true && !g_msh.hist_curr->next)
 	{
-		free_null((void **)&stream->cmd_line);
+		ft_free_null((void **)&stream->cmd_line);
 		stream->cmd_line = stream->tmp_input;
 		stream->tmp_input = NULL;
 		stream->is_history = false;
@@ -70,7 +70,7 @@ static void	term_arrow(t_stream *stream, char arrow, bool is_history)
 			g_msh.hist_curr = g_msh.hist_curr->prev;
 		if (arrow == 'D')
 			g_msh.hist_curr = g_msh.hist_curr->next;
-		free_null((void **)&stream->cmd_line);
+		ft_free_null((void **)&stream->cmd_line);
 		stream->cmd_line = strdup_ver(g_msh.hist_curr->cmd_line);
 		stream->is_history = true;
 	}
@@ -87,7 +87,7 @@ static void	term_get_char(t_stream *stream, int max_len, int col, char c)
 	ft_memcpy(tmp, stream->cmd_line, max_len);
 	tmp[max_len] = c;
 	tmp[max_len + 1] = '\0';
-	free_null((void **)&stream->cmd_line);
+	ft_free_null((void **)&stream->cmd_line);
 	stream->cmd_line = tmp;
 	ft_printf("%c", c);
 	if ((stream->len_prompt + max_len) % (col - 1) == 0)

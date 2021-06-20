@@ -41,8 +41,8 @@ void	set_exit_status(int status)
 void	msh_destroy(void)
 {
 	dict_destroy(g_msh.dict_env, free);
-	free_null((void **)&g_msh.stream.cmd_line);
-	free_null((void **)&g_msh.stream.tmp_input);
+	ft_free_null((void **)&g_msh.stream.cmd_line);
+	ft_free_null((void **)&g_msh.stream.tmp_input);
 	erase_history(&g_msh.history);
 	g_msh.hist_curr = NULL;
 	restore_terminal_data(true);
