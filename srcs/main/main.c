@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:26:15 by apuchill          #+#    #+#             */
-/*   Updated: 2021/06/20 19:55:54 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:13:35 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	parser(char *line)
-{
-	if (ft_strcmp(line, "exit") == 0)
-		builtin_exit();
-	else if (ft_strcmp(line, "") == 0)
-		return ;
-	else if (ft_strcmp(line, "history") == 0)
-		builtin_history(g_msh.history);
-	else
-		ft_printf("minishell: command not found: %s\n", line);
-}
 
 static void	read_line(char *termtype, t_stream *stream)
 {
@@ -80,6 +68,7 @@ int	main(int argc, char *argv[])
 		signal_handler(PROMPT);
 		read_line(ft_getenv("TERM"), &g_msh.stream);
 		restore_terminal_data(false);
+		tokenizer(g_msh.stream.cmd_line);
 		parser(g_msh.stream.cmd_line);
 		put_input_in_history(g_msh.stream.cmd_line);
 		ft_free_null((void **)&g_msh.stream.cmd_line);
